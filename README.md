@@ -1,3 +1,9 @@
+# Vue2.0后的实例挂载点，不能是body和HTML
+
++ 单Vue组件里面，template是必须的,且只能有一个根节点。
+
+
+
 # vue-youzan
 
 > A Vue.js project
