@@ -2,6 +2,8 @@
 
 + 单Vue组件里面，template是必须的,且只能有一个根节点。
 
++ 购物车
+
 
 
 # vue-youzan
