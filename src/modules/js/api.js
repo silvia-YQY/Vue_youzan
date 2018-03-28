@@ -7,7 +7,11 @@ let url ={
     search:"/GET//search/list"  ,//查询页面
     details:"/GET//goods/details",  //商品详情
     cart:"/GET//cart/add" ,//加入购物车
-    dealList:"/GET//goods/dealList"
+    dealList:"/GET//goods/dealList",
+    cartList:"/GET//cart/list",
+    cartReduce:"/GET//cart/cartReduce",
+    cartRemove:"/GET//cart/cartRemove",
+    cartMremove:"/GET//cart/cartMremove"
 } 
 
 //开发环境和真实环境的切换
