@@ -1,0 +1,102 @@
+import "./goods_common.css"
+import "./goods_custom.css"
+import "./goods.css"
+import "./goods_theme.css"
+import "./goods_mars.css"
+import "./goods_sku.css"
+import "./goods_transition.css"
+
+import Vue from 'vue'
+import axios from 'axios'
+import url from 'js/api.js'
+import mixin from 'js/mixin.js'
+import qs from 'qs'
+import Swiper from "components/Swiper.vue"  //轮播
+
+let {id} = qs.parse(location.search.substr(1))
+let detailsTab = ['商品详情','本店成交']
+
+new Vue({
+    el:"#app",
+    data:{
+        id,
+        details:null,
+        detailsTab,
+        tabIndex : 0,
+        dealList:null,
+        bannerLists:null,
+        skuType:1,
+        showSku:false,
+        skuNum:1,
+        isAddCart:false,
+        showAddMessage:false,
+    },
+    created(){
+        this.getDetials()
+    },
+    methods:{
+        getDetials(){
+            axios.get(url.details,{id})
+                .then(res =>{
+                    this.details = res.data.data
+                    this.bannerLists = []
+                    this.details.imags.forEach(item => {
+                        this.bannerLists.push({
+                            clickUrl:'',
+                            image:item.imgUrl
+                        })
+                    });
+                })
+        },
+        changeTab(index){
+            this.tabIndex = index
+            if(index){
+                this.getDeal()
+            }
+        },
+        getDeal(){  //本店成交数据
+            axios.post(url.dealList)
+                .then(res => {
+                    this.dealList = res.data.lists
+                })
+        },
+        chooseSku(sku){
+            this.skuType = sku
+            this.showSku = true
+        },
+        changeskuNum(num){
+            if(num<0&&this.skuNum === 1) return 
+            this.skuNum += num
+            
+        },
+        addCart(){
+            axios.post(url.cart,{
+                id,
+                number:this.skuNum
+            }).then(res =>{
+                if(res.data.status === 200){
+                    this.showSku = false
+                    this.isAddCart = true
+                    this.showAddMessage = true
+
+                    setTimeout(() => {
+                        this.showAddMessage = false
+                    },1000)
+                }
+            } )
+        }
+    },
+    mixins:[mixin],
+    components:{
+        Swiper
+    },
+    watch:{
+        showSku(val,oldVal){
+            //document.body.style.overflow = val ? 'hidden':'auto'
+            document.querySelector('html').style.overflow = val ? 'hidden':'auto'
+            //document.body.style.height = val ? '100%':'auto'
+            document.querySelector('html').style.height = val ? '100%':'auto'
+        }
+    }
+
+})

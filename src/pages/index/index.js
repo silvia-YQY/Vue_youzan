@@ -27,10 +27,18 @@ new Vue({
     },
     methods:{
         getLists(){
-            if(this.allLoaded) return  //所有数据加载完毕则不再运行
-            if(this.pageNum > 5) return
+            
+            if(this.allLoaded){   //所有数据加载完毕则不再运行
+                this.loading = false
+                return
+            }   
+            
+            if(this.pageNum > 3) {
+                this.allLoaded = true
+                return
+            } 
             this.loading = true
-            axios.post(url.hotLists,{
+            axios.post(url.hotLists,{ 
                 pageNum:this.pageNum,
                 pageSize:this.pageSize
             }).then(res => {
@@ -47,6 +55,7 @@ new Vue({
                 this.pageNum ++
                 this.loading = false
             })
+            
             
         },
         getBanner(){

@@ -675,7 +675,7 @@ only screen and (min-device-pixel-ratio:1.5) {
   margin-top: 10px;
   width: 16px;
   height: 16px;
-  background: url("/v2/image/loader.gif") no-repeat 50%;
+  background: url(https://b.yzcdn.cn/v2/image/loader.gif) no-repeat 50%;
   background-size: 16px 16px
 }
 
@@ -1071,7 +1071,6 @@ only screen and (min-device-pixel-ratio:1.5) {
 }
 
 .go-to-top {
-  /* display: none; */
   position: fixed;
   right: 15px;
   bottom: 60px;

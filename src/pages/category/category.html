@@ -20,10 +20,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/category.css"> -->
+  <style>
+    [v-cloak] { display: none }   
+  </style>
 </head>
 
 <body class=" " style="">
-  <div id="app">
+  <div id="app" v-cloak>
     <div class="container with-bottom-nav" style="min-height: 667px; height: 667px;">
       <div class="custom-search js-search-bar">
         <form>
@@ -76,7 +79,7 @@
                   </div>
                   <ul>
                     <li class="goods-item" v-for = "(list,index) in rankData.hotGoods" >
-                      <a :href="list.clickUrl">
+                      <a :href="'goods.html?id='+list.id">
                         <div class="thumb badge center-img">
                           <img :src="list.image">
                           <span class="num">{{index+1}}</span>

@@ -4,7 +4,10 @@ let url ={
     topList:'/GET/catagory/topList',   //一级分类
     subList:"/GET//catagory/subList",  //二级分类
     rank:"/GET//category/rank"  ,       //综合分类
-    search:"/GET//search/list"  //查询页面
+    search:"/GET//search/list"  ,//查询页面
+    details:"/GET//goods/details",  //商品详情
+    cart:"/GET//cart/add" ,//加入购物车
+    dealList:"/GET//goods/dealList"
 } 
 
 //开发环境和真实环境的切换
