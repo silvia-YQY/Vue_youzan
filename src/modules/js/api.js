@@ -9,9 +9,10 @@ let url ={
     cart:"/GET//cart/add" ,//加入购物车
     dealList:"/GET//goods/dealList",
     cartList:"/GET//cart/list",
-    cartReduce:"/GET//cart/cartReduce",
-    cartRemove:"/GET//cart/cartRemove",
-    cartMremove:"/GET//cart/cartMremove"
+    cartAdd:"/POST//cart/cartAdd",
+    cartReduce:"/GET//cart/cartReduce",             //减少商品数量
+    cartRemove:"/GET//cart/cartRemove",      //普通删除
+    cartMremove:"/GET//cart/cartMremove"  //删除多个
 } 
 
 //开发环境和真实环境的切换
