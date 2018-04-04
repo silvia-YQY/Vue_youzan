@@ -3,8 +3,20 @@
 + 单Vue组件里面，template是必须的,且只能有一个根节点。
 
 + 购物车
+1. Volecity动画
+2. API
+ - findIndex
+ -  e.changedTouches[0].clientX
+3. qs库
+    - 获取hash：利用hash数值记录转跳页面
 
-
++ 我[页面]
+1. 路由（router）
+  - vue-router配置
+  - 子路由：children
+2. 页面转跳
+   - 编程式导航：使用点击绑定事件
+   - 使用router-link to 
 
 # vue-youzan
 
