@@ -17,6 +17,18 @@ class Cart{
             number:1
         })
     }
+
+    static getCartList(){
+        return fetch(url.cartList)
+    }
+
+    static cartRemove(id){
+        return fetch(url.cartRemove,{id})
+    }
+
+    static cartMremove(ids){
+        return fetch(url.cartMremove,{ids})
+    }
 }
 
 export default Cart

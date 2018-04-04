@@ -92,7 +92,7 @@ new Vue({
     },
     methods:{
         getCartList(){
-            axios.post(url.cartList)
+            Cart.getCartList()
                 .then(res =>{ //先处理好数据再赋值给data，否则不是响应式
                     let lists = res.data.cartList
                     lists.forEach(shop => {
@@ -177,22 +177,23 @@ new Vue({
         removeConfirm(){  //删除商品，先发送请求删除数据库数据，再在页面删除信息
             if(this.removeMsg === '确定要删除该商品吗？'){
                 let {shop,shopIndex,good,goodIndex} = this.removeData
-                axios.post(url.cartRemove,{
-                    id:good.id,
-                }).then(res => {
-                    shop.goodsList.splice(goodIndex,1)
-                    if(!shop.goodsList.length){ //当所同一店铺下，商品都删除了，就需要删除店铺
-                        this.list.splice(shopIndex,1)
-                        this.removeShop()  //删除店铺的编辑状态
+                Cart.cartRemove(good.id)
+                    .then(res => {
+                        shop.goodsList.splice(goodIndex,1)
+                        if(!shop.goodsList.length){ //当所同一店铺下，商品都删除了，就需要删除店铺
+                            this.list.splice(shopIndex,1)
+                            this.removeShop()  //删除店铺的编辑状态
                     }
                     this.removePopup = false
+                    
+                    //this.$refs[`goods-${shopIndex}-${goodIndex}`][0].style.left = '0px'
                 })
-            }else{
+            }else{ //删除多个商品
                 let ids = []
                 this.removeLists.forEach(good => {
                     ids.push(good.id)
                 })
-                axios.post(url.cartMremove,{ids})
+                Cart.cartMremove(ids)
                     .then( res =>{
                     let arr = [] //用来接收存留商品列表
                     this.editingShop.goodsList.forEach(good => {
@@ -239,7 +240,9 @@ new Vue({
             if(endX - good.startX > 100){
                 left = '0px'
             }
+            
             Volecity(this.$refs[`goods-${shopIndex}-${goodIndex}`],{left})
+            //VUE通过ref绑定注册获取DOM节点（节点需要唯一，不能相同）
         }
     },
     mixins:[mixin]
