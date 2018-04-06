@@ -660,6 +660,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
   margin-top: 7px
 }
 
+.stick-bottom-row .btn-standard,
+.stick-bottom-row .btn-blue selectedRed{
+  color: #fff;
+  background: red;
+}
+
 .block-item label,
 .block-item input {
   vertical-align: middle

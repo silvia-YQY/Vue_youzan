@@ -1,8 +1,9 @@
-
+import './member.css'
 
 //1.使用Vue-router
 import Vue from 'vue'
 import Router from 'vue-router'
+
 Vue.use(Router)
 
 let routes = [{
@@ -19,10 +20,12 @@ let routes = [{
 
     },{
         path:'all',
+        name:'all',
         component:require("./components/all.vue").default
 
     },{
         path:'form',
+        name:'form',
         component:require("./components/form.vue").default
     }]
 }]
