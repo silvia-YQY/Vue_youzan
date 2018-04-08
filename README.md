@@ -150,7 +150,62 @@
 
 
   ```
-       
+  
+
+# Vuex 状态管理
+
+**Store**
+
+### 使用步骤
+
+1. 安装vuex
+2. 创建实例
+3. 注入到父组件
+
+基本store架构
+
+```
+const store = new Vuex.Store({
+    //状态管理（类似于data）
+    //里面的数据不允许直接修改，只能利用事件进行修改
+    state:{
+        lists:null,
+
+    },
+    //同步事件，管理数据
+    mutations:{
+        init(state,lists){
+            state.lists = lists
+        }
+    },
+    //异步事件
+    actions:{
+        getLists({commit} ){
+            Address.list().then(res => {
+                commit('init',res.data.lists)   //触发mutations中的init事件
+            })
+        }
+    }
+})
+```
+**注意**
+  1. 若需要修改数据，需要在actions里面进行事件操作执行mutations，进而修改state里面的数据
+    > 我的理解就是，若mutations改变，则state的数据同步变化，且state仅能通过mutations改变。但是mutations只能通过actions来进行异步操作才能改变
+  2. 子组件需要用dispatch触发actions的事件
+      `this.$store.dispatch("getLists")`
+  3. 子组件中获取state
+  ```
+    computed:{ //利用计算属性获取store里面的state.lists
+    lists(){
+      return this.$store.state.lists
+    }
+  },
+  ```
+
+
+
+  [具体看文档](https://vuex.vuejs.org/zh-cn/actions.html)
+
 
 # vue-youzan
 

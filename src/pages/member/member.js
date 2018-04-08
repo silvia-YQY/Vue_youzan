@@ -1,42 +1,13 @@
 import './member.css'
-
-//1.使用Vue-router
 import Vue from 'vue'
-import Router from 'vue-router'
 
-Vue.use(Router)
+import router from './router/index.js'  //引入路由
+import store from './vuex/index.js'  //引入状态管理
 
-let routes = [{
-    path:'/',
-    component:require('./components/member.vue').default
-},
-{
-    path:'/address',
-    component:require('./components/address.vue').default,
-    //嵌套路由
-    children:[{
-        path:'',
-        redirect:'all'  //重定向
-
-    },{
-        path:'all',
-        name:'all',
-        component:require("./components/all.vue").default
-
-    },{
-        path:'form',
-        name:'form',
-        component:require("./components/form.vue").default
-    }]
-}]
-
-//2.创建router实例
-let router = new Router({
-    routes
-})
 
 //根组件注入
 new Vue({
     el:"#app",
-    router
+    router,
+    store, //直接注入
 })
