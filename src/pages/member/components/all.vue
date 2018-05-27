@@ -26,17 +26,27 @@
 
 
 <script>
-import Address from 'js/addressService.js'
+//import Address from 'js/addressService.js'
 export default {
-  data(){
-    return{
-      lists:null,
+  // data(){
+  //   return{
+  //     lists:null,
+  //   }
+  // },
+  computed:{ //利用计算属性获取store里面的state.lists
+    lists(){
+      return this.$store.state.lists
     }
   },
   created(){
-    Address.list().then(res => {
-      this.lists = res.data.lists
-    })
+    if(!this.lists){
+      //通过dispatch执行store中actions里面的事件
+      this.$store.dispatch("getLists")
+    }
+
+    // Address.list().then(res => {
+    //   this.lists = res.data.lists
+    // })
   },
   methods:{
       //使用脚本的方式转跳  编程式导航
