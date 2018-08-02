@@ -72,7 +72,7 @@ export default{
         setDefault(){
             // Address.setDefault(this.id).then(res => {
             //     this.$router.go(-1)
-            // })
+            // })   
             this.$store.dispatch('setDefaultAction',this.id)
         }
     },
